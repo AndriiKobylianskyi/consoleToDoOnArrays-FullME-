@@ -10,6 +10,11 @@ const prioritys = {
     MIDDLE: `Middle`
 }
 
+const showBy = {
+    status: `status`,
+    priority: `priority`
+}
+
 const toDo = []
 let arr = []
 
@@ -101,33 +106,33 @@ function deleteTask(taskName) {
     }
 }
 
-
-function showByStatus() {
+function showBys(option) {
     let result = ``
-    for (let key in statuses) {
-        result += `----- ${key}\n`
-        for (let k of Object.values(toDo)) {
-            if (k.status === statuses[key]) {
-                result += ` ${k.name}\n`
+    if (option === showBy.status) {
+        for (let key in statuses) {
+            result += `----- ${key}\n`
+            for (let k of Object.values(toDo)) {
+                if (k.status === statuses[key]) {
+                    result += ` ${k.name}\n`
+                }
+            }
+        }
+    } else if (option === showBy.priority) {
+        for (let key in prioritys) {
+            result += `----- ${key}\n`
+            for (let k of Object.values(toDo)) {
+                if (k.priority === prioritys[key]) {
+                    result += ` ${k.name}\n`
+                }
             }
         }
     }
+
+
     console.log(result)
 }
 
 
-function showByPriority() {
-    let result = ``
-    for (let key in prioritys) {
-        result += `----- ${key}\n`
-        for (let k of Object.values(toDo)) {
-            if (k.priority === prioritys[key]) {
-                result += ` ${k.name}\n`
-            }
-        }
-    }
-    console.log(result)
-}
 
 // changeStatusTest
 console.log(`\n=====ChangeStatusTest=====`)
@@ -155,11 +160,11 @@ deleteTask(`Drin5435435435k`)
 console.log(`\n`)
 console.log(toDo)
 
-//ShowByStatus
+//ShowBy
 console.log(`\n=====ShowByStatus=====\n`)
-showByStatus()
+showBys(`status`)
 
 //ShowByPriority
 console.log(`\n=====ShowByPriority=====\n`)
-showByPriority()
+showBys(`priority`)
 
